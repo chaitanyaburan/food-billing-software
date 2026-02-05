@@ -1,0 +1,16 @@
+CORRECTED DATABASE_URL FOR VERCEL (FINAL VERSION):
+
+postgresql://postgres.tngzqalzwrtlazlzooou:C%40B%40U%40R%40A%40N@aws-1-ap-southeast-1.pooler.supabase.com:6543/postgres?pgbouncer=true&sslmode=require
+
+CHANGES MADE:
+- Password encoded: C@B@U@R@A@N → C%40B%40U%40R%40A%40N
+- Added pgbouncer=true (REQUIRED - fixes prepared statement errors)
+- Added SSL parameter: sslmode=require
+
+IMPORTANT: The pgbouncer=true parameter is CRITICAL!
+It tells Prisma to disable prepared statements, which fixes:
+- "prepared statement already exists" errors
+- Intermittent connection failures
+- Parameter binding errors
+
+COPY THIS EXACT STRING TO VERCEL ENVIRONMENT VARIABLES
